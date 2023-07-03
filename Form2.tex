@@ -1,0 +1,131 @@
+\documentclass[oneside]{report}
+\usepackage[german]{babel}
+\usepackage{fullpage}
+\usepackage[top=10pt, bottom = 2cm, hmargin=1.5cm,bottom=1.5cm,includeheadfoot, headsep=2 cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{pdfpages}
+\usepackage{changepage}
+\usepackage{fancyhdr}
+\usepackage{graphics}
+\usepackage{xcolor}
+\definecolor{CorpColor}{RGB}{0,173,187}
+\usepackage{hyperref}
+\usepackage{tabularx,tabu}
+
+\usepackage{multicol}
+\usepackage{setspace}
+
+%\newcommand{\invisiblesection}[1]{%
+	%	\phantomsection%
+	%	\stepcounter{}%
+	%	\addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+	%}
+
+\usepackage{xpatch}
+\xpretocmd\headrule{\color{CorpColor}}{}{\PatchFailed}
+
+\renewcommand{\baselinestretch}{0.5} 
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\pagestyle{fancy}
+\fancyhf{}
+\let\oldheadrule\headrule% Copy \headrule into \oldheadrule
+\renewcommand{\headrule}{\color{CorpColor}\oldheadrule}% Add colour to \headrule
+\renewcommand{\headrulewidth}{0.5pt} 
+%\fancyhead[C]{\raisebox{3ex}{\large \bfseries John Johnson Smith}}
+\fancyhead[LO,LE]{\begin{tabular}{l}
+		\includegraphics[scale=0.4]{Logo Q-TEC neu}\\
+		%\includegraphics[scale=0.2]{logo_din_iso_9001}
+	\end{tabular}
+}
+\fancyhead[c]{\textcolor{CorpColor}{Pr{\"u}fbericht}}
+\fancyhead[RE,RO]{\textcolor{CorpColor}{Q-TEC AG}}
+
+
+\def\LayoutTextField#1#2{% label, field
+	\def\Hy@temp{#1}%
+	\ifx\Hy@temp\@empty
+	#2%
+	\else
+	#1 \raisebox{\dimeval{-\height+\ht\strutbox}}{#2}%
+	\fi
+}
+
+\newcommand{\Hrule}[4][.]{%
+	\par\addvspace{#2}%
+	\begingroup\color{CorpColor}%
+	\hrule height #4
+	\endgroup
+	\addvspace{#3}%
+}
+
+
+\renewcommand{\baselinestretch}{2}
+\author{Your Name Here}
+\title{Your Title Here}
+\begin{document}
+	%\maketitle
+	%\tableofcontents
+	%	\chapter{Your Chapter Title Here}
+	\section*{}\label{AlgemeinInfo}
+	%\begin{table}{l l} % placement parameter H
+	\begin{minipage}{.25\textwidth}
+		\singlespacing
+		\textcolor{CorpColor}{Q-TEC AG \\% \TextField[width=3cm]{namea}\\
+			Brunnennstrasse 6a\\
+			Ch-8604 Volketswil\\}
+		\phantom{This text will be invisible}\\
+		Tel.:  \href{+41 (0)43 355 60 10}{+41 43 355 60 10} \\
+		Email: \href{info(at)q-tec-ag.ch}{info(at)q-tec-ag.ch}\\
+		Mail:  \href{http://www.q-tec-ag.ch/}{www.q-tec-ag.ch/}
+	\end{minipage}% This must go next to `\end{minipage}`
+\begin{minipage}{.4\textwidth}
+	\singlespacing
+	\TextField[multiline=true,height=6\baselineskip, width=5.5cm, height=3cm, bordercolor={CorpColor}]{Kunde:}\\
+\end{minipage}
+\begin{minipage}{.35\textwidth}
+	\singlespacing
+	\flushright
+	\TextField[multiline=true, width=4cm, height=2cm, bordercolor={CorpColor}]{Objekt.:}\\
+	\TextField[multiline=true, width=4cm, height=10pt, bordercolor={CorpColor}]{Zeichnung Nr.:}\\
+	
+\end{minipage}
+
+\Hrule[red!40]{3pt}{1pt}{2pt}
+
+\section*{}\label{Bericht}
+\begin{Form}
+	\begin{tabular}{ p{0.6\linewidth}  p{0.4\linewidth}}
+		\TextField[width=5cm, height=10pt, bordercolor={CorpColor}]{Prüfbericht Nr.:} & {\TextField[height=6\baselineskip, height = 12pt, width= 5cm, bordercolor={CorpColor}]{Pr{\"u}datum:}}\\
+		%\hline
+		\ChoiceMenu[height=8pt,width=5cm, bordercolor={CorpColor},print,combo,default=Qualifizierung]{Berichtsart:}{Qualifizierung, Requalifizierung} & \\
+		%\hline
+		\ChoiceMenu[height=8pt,width=5cm, bordercolor={CorpColor},print,combo,default=Mikrobiologisches Monitoring]{Messungsart:}{Mikrobiologische Monitoring, Physikalische Messungen} & \ChoiceMenu[height=8pt,width=1.5cm, bordercolor={CorpColor},print,combo,default=AK.KL.SE.]{Methods:}{AK.KL.SE., AK.KL.,KL.SE.,AK.SE.} \\
+		
+	\end{tabular}
+\end{Form}
+\vspace{20pt}
+
+\begin{minipage}{.5\textwidth}
+\hspace{-12pt}
+\flushright
+	\TextField[height=6\baselineskip, height = 12pt, width= 5cm, bordercolor={CorpColor}]{Abklatschprobe diameter:}\\
+\hspace{-12pt}
+	\TextField[height=6\baselineskip, height = 12pt,width= 5cm, bordercolor={CorpColor}]{Luftprobe:}\\
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\hspace{-12pt}
+\flushright
+	\TextField[height=6\baselineskip, height = 12pt, width= 5cm, bordercolor={CorpColor}]{LOT:}\\
+\hspace{-12pt}
+	\TextField[height=6\baselineskip, height = 12pt,width= 5cm, bordercolor={CorpColor}]{LOT:}\\
+\end{minipage}
+Bebrüht bla bla  T \%
+\Hrule[red!40]{3pt}{1pt}{2pt}
+
+%	\section{This text will be invisible}
+%	\subsection{Your Subsection title here}
+%	\subsubsection{Your subsubsection title here}
+
+\end{document}
